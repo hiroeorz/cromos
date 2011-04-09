@@ -11,12 +11,14 @@
 </head>
 <body>
 
-<h1><%= image_tag "title.jpg", :height => 70  %></h1>
+<h1><%= link_to image_tag("title.jpg", :height => 70),
+                {:controller => :informations, :action => :index}  %></h1>
 
 <%= yield %>
 
-<div style="clear: both;"></div>
-<hr />
+<div id="footer"> 
+  Copyright &copy; <%=Time.now.year %> TEAM CROMOS
+</div> 
 
 </body>
 </html>
