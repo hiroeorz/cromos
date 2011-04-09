@@ -1,5 +1,6 @@
 
 <div id="sidebar">
+  <p>下の項目から症状を選択するか、測定値を入力して"送信"ボタンをクリックしてください。</p>
   <%= form_for(:parameter, :url => {:controller => :diagnoses,
                                     :action => :set_parameter},
                :method => :get) do |f| %>
@@ -7,10 +8,10 @@
       <% @select_parameters.each do |parameter| %>
         <li>
           <% if parameter == @select_parameters.last -%>
-            <%= f.label parameter.name %><br />
+            <b><%= f.label parameter.name %></b><br />
             <%= f.text_field :limit_value %>
           <% else -%>
-            <%= f.label parameter.name %>
+            <b><%= f.label parameter.name %></b>
             <%= parameter.limit_value %>
           <% end -%>
         <li>
@@ -26,7 +27,7 @@
 </div>
 
 <div id="content">
-  <h2>Listing diagnoses</h2>
+  <h2>症状一覧</h2>
 
   <table>
     <tr>
