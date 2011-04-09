@@ -102,9 +102,12 @@ div#sidebar {
   -moz-box-shadow: 2px 0px 0px #ccc;
 }
 
+div#sidebar ul {
+  min-height: 700px;
+}
+
 div#sidebar ul li {
   list-style-type: none;
-  min-height: 700px;
   margin-top: 20px;
 }
 
@@ -160,7 +163,7 @@ a#select-womem:hover, a#select-mem:hover {
 }
 
 input#parameter-send {
-  margin-left: 170px;
+  margin-left: 130px;
 }
 
 #footer {
