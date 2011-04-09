@@ -58,9 +58,9 @@ div.field, div.actions {
 
 h1 {
   margin: 0;
-  padding: 15px; 20px;
-  height: 40px;
-  background-color: #f0f8ff;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #fff0f5;
   color: #ffa07a;
 }
 
@@ -79,6 +79,7 @@ div#sidebar {
 
 div#sidebar ul li {
   list-style-type: none;
+  min-height: 700px;
 }
 
 img#select-mem {
