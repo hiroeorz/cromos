@@ -3,20 +3,7 @@ class DiagnosesController < ApplicationController
   # GET /diagnoses.xml
   def index
     @diagnoses = Diagnosis.all
-    @parameter = session[:parameters].nil? ? nil : session[:parameters].last
-
-    if session[:parameters].nil?
-      @select_parameters = [Parameter.first]
-    else
-      if params[:limit_value] > @parameter.limit_value
-        next_parameter = session[:parameters].last.yes
-      else
-        next_parameter = session[:parameters].last.no
-      end
-
-      session[:parameters] << next_parameter
-      @select_parameters = session[:parameters]
-    end
+    @select_parameters = session[:parameters].nil? ? [Parameter.first] : session[:parameters]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -98,7 +85,28 @@ class DiagnosesController < ApplicationController
   ################# search methods ##################
 
   def set_parameter
-    
+    @parameter = session[:parameters].nil? ? nil : session[:parameters].last
+
+    if session[:parameters].nil?
+      logger.debug("first parameters sored to session.")
+      @select_parameters = [Parameter.first]
+    else
+      if params[:limit_value].to_i > @parameter.limit_value
+        next_parameter = session[:parameters].last.yes
+      else
+        next_parameter = session[:parameters].last.no
+      end
+
+      session[:parameters] << next_parameter
+      @select_parameters = session[:parameters]
+    end
+
+logger.debug("//////////////////////////////////")
+logger.debug session[:parameters]
+
+    respond_to do |format|
+        format.html { redirect_to(:action => :index) }
+    end
   end
 
 end

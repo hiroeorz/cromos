@@ -1,7 +1,7 @@
 
 <div id="sidebar">
-  <%= form_for(:parameter, :url => url_for(:controller => :diagnoses,
-                                           :action => :index),
+  <%= form_for(:parameter, :url => {:controller => :diagnoses,
+                                    :action => :set_parameter},
                :method => :get) do |f| %>
     <ul>
       <% @select_parameters.each do |parameter| %>
