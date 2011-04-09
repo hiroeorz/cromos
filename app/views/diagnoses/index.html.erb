@@ -9,7 +9,7 @@
         <li>
           <% if parameter == @select_parameters.last -%>
             <b><%= f.label parameter.name %></b><br />
-            <%= f.text_field :limit_value %>
+            <%= f.text_field :limit_value, :class => :textfield %>
           <% else -%>
             <b><%= f.label parameter.name %></b>
             <%= parameter.limit_value %>

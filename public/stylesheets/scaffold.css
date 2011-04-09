@@ -112,6 +112,10 @@ div#sidebar ul li {
   margin-top: 20px;
 }
 
+div#sidebar ul li input.textfield {
+  width: 150px;
+}
+
 div#sidebar p {
   margin: 20px; 20px;
   color: #888;
