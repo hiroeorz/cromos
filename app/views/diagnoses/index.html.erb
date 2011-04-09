@@ -1,0 +1,56 @@
+
+<div id="sidebar">
+  <%= form_for(:parameter, :url => url_for(:controller => :diagnoses,
+                                           :action => :index),
+               :method => :get) do |f| %>
+    <ul>
+      <% @select_parameters.each do |parameter| %>
+        <li>
+          <% if parameter == @select_parameters.last -%>
+            <%= f.label parameter.name %><br />
+            <%= f.text_field :limit_value %>
+          <% else -%>
+            <%= f.label parameter.name %>
+            <%= parameter.limit_value %>
+          <% end -%>
+        <li>
+      <% end %>
+    </ul>
+
+    <div class="actions">
+      <%= f.submit "送信", :id => "parameter-send" %>
+    </div>
+
+  <% end %>
+
+</div>
+
+<div id="content">
+  <h2>Listing diagnoses</h2>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @diagnoses.each do |diagnosis| %>
+      <tr>
+        <td><%= diagnosis.name %></td>
+        <td><%= diagnosis.description %></td>
+        <td><%= link_to 'Show', diagnosis %></td>
+        <td><%= link_to 'Edit', edit_diagnosis_path(diagnosis) %></td>
+        <td><%= link_to 'Destroy', diagnosis, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+<br />
+
+<%= link_to 'New Diagnosis', new_diagnosis_path %>
+
+</div><!-- content -->
