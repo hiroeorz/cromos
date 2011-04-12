@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20110412151311
+#
+# Table name: diagnoses
+#
+#  id          :integer         not null, primary key
+#  name        :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  yes_id      :integer
+#  no_id       :integer
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
