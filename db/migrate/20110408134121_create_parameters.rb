@@ -3,7 +3,8 @@ class CreateParameters < ActiveRecord::Migration
     create_table :parameters do |t|
       t.string :name
       t.text :description
-
+      t.text :code
+      t.text :type
       t.timestamps
     end
   end

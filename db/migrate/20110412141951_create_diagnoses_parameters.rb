@@ -4,6 +4,7 @@ class CreateDiagnosesParameters < ActiveRecord::Migration
       t.integer :diagnosis_id
       t.integer :parameter_id
       t.string :args
+      t.boolean :return_value
       t.timestamps
     end
   end

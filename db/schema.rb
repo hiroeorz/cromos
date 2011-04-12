@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20110412141951) do
     t.integer  "diagnosis_id"
     t.integer  "parameter_id"
     t.string   "args"
+    t.boolean  "return_value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20110412141951) do
   create_table "parameters", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.text     "code"
+    t.text     "type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "yes_id"
