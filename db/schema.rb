@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412141951) do
+ActiveRecord::Schema.define(:version => 20110412151311) do
 
   create_table "diagnoses", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(:version => 20110412141951) do
     t.integer  "yes_id"
     t.integer  "no_id"
     t.integer  "limit_value"
+  end
+
+  create_table "setups", :force => true do |t|
+    t.string   "name"
+    t.string   "args"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

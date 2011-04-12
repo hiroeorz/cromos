@@ -1,4 +1,6 @@
 Cromos::Application.routes.draw do
+  resources :setups
+
   resources :parameters
 
   match 'diagnoses/set_parameter' => 'diagnoses#set_parameter'
