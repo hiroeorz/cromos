@@ -7,6 +7,8 @@ Cromos::Application.routes.draw do
   match 'informations/index' => 'informations#index'
   match 'informations/select' => 'informations#select'
 
+  root :to => "welcome#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
