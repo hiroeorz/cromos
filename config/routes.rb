@@ -1,13 +1,20 @@
 Cromos::Application.routes.draw do
+
+  #get "welcome/index"
+  #devise_for :users
+  root :to => 'welcome#index'
+  devise_for :users
+  #devise_for(:users, :controllers => {:sessions = "users/sessions"}
+
+  get 'informations', :to => 'informations#index', :as => :user_root
+
   resources :parameters
 
   match 'diagnoses/set_parameter' => 'diagnoses#set_parameter'
   resources :diagnoses
 
-  match 'informations/index' => 'informations#index'
+  #match 'informations/index' => 'informations#index'
   match 'informations/select' => 'informations#select'
-
-  root :to => "welcome#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

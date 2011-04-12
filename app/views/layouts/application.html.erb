@@ -12,11 +12,18 @@
 <body>
 
 <h1>
-  <%= link_to image_tag("title.jpg", :height => 70),
-                {:controller => :informations, :action => :index}  %>
+  <% if current_user %>
+    <%= link_to image_tag("title.jpg", :height => 70),
+                  {:controller => :informations, :action => :index} %>
+  <% else %>
+    <%= link_to image_tag("title.jpg", :height => 70) %>
+  <% end %>
+
   <%= link_to('Sign out', [:destroy, current_user, :session], :class => 'signOut') if current_user %>
 </h1>
 
+<%= content_tag(:p, notice, :class => "notice")%>
+<%= content_tag(:p, alert, :class => "alert")%>
 <%= yield %>
 
 <div id="footer"> 

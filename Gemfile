@@ -31,4 +31,4 @@ gem 'sqlite3'
 # end
 
 gem "memcache-client"
-gem "dm-devise"
+gem "devise"
