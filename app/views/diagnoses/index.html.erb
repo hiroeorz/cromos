@@ -20,7 +20,7 @@
 
       <li>
         <div class="actions">
-          <%= f.submit "送信", :id => "parameter-send" %>
+          <%= f.submit "送信", :id => "parameter-send" unless @select_parameters.empty? %>
         </div>
       </li>
 

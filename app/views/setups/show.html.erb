@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @setup.name %>
+</p>
+
+<p>
+  <b>Args:</b>
+  <%= @setup.args %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @setup.code %>
+</p>
+
+
+<%= link_to 'Edit', edit_setup_path(@setup) %> |
+<%= link_to 'Back', setups_path %>

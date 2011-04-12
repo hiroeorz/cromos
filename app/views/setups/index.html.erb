@@ -1,0 +1,27 @@
+<h1>Listing setups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Args</th>
+    <th>Code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @setups.each do |setup| %>
+  <tr>
+    <td><%= setup.name %></td>
+    <td><%= setup.args %></td>
+    <td><%= setup.code %></td>
+    <td><%= link_to 'Show', setup %></td>
+    <td><%= link_to 'Edit', edit_setup_path(setup) %></td>
+    <td><%= link_to 'Destroy', setup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Setup', new_setup_path %>

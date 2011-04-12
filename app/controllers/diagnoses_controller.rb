@@ -4,6 +4,7 @@ class DiagnosesController < ApplicationController
   def index
     @diagnoses = Diagnosis.all
     @select_parameters = session[:parameters].nil? ? [Parameter.first] : session[:parameters]
+    @select_parameters.delete(nil)
 
     respond_to do |format|
       format.html # index.html.erb
