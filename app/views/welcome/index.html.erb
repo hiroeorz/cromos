@@ -1,0 +1,13 @@
+<h1>Welcome#index</h1>
+
+<%= content_tag(:p) do %>
+  <%= link_to "ログイン", [:new, :user_session] %>
+<% end -%>
+
+<%= content_tag(:p) do %>
+  <%= link_to "ユーザー登録", [:new, :user_registration] %>
+<% end -%>
+
+<%= content_tag(:p) do %>
+  <%= link_to "パスワード再発行", [:new, :user_password] %>
+<% end -%>
