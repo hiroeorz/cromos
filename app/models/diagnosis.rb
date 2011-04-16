@@ -23,4 +23,21 @@ class Diagnosis < ActiveRecord::Base
   
   attr_reader :examine_object
 
+  def fqueue
+    @fqueue ||= {}
+  end
+
+  def call(name)
+    name = name.to_sym if name.kind_of?(String)
+    fqueue[name].call
+  end
+
+  def load_functions
+    parameters.each do |p|
+      fqueue[p.name.to_sym] = lambda{ eval(p.code) }
+    end
+
+    return !parameters.empty?
+  end
+
 end

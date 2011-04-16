@@ -49,12 +49,22 @@ describe Diagnosis, :with => "parameters" do
 
     @diagnosis = Diagnosis.create(:name => "潰瘍性大腸炎",
                                   :description => "出血を伴う腸管内の潰瘍。",
-                                  :parameters = [@parameter])
+                                  :parameters => [@parameter])
   end
 
   after :all do
     @diagnosis.delete if @diagnosis
   end
 
+  it "should load function from parameter" do
+    @diagnosis.load_functions.should == true
+
+    @diagnosis.instance_eval do
+      @fqueue.length.should == 1
+    end
+
+    @diagnosis.fqueue[@parameter.name.to_sym].call.should == true
+    @diagnosis.call(@parameter.name).should == true
+  end
 
 end
