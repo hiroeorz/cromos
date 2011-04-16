@@ -30,4 +30,5 @@ gem 'sqlite3'
 #   gem 'webrat'
 # end
 
-gem "memcache-client"
+gem "memcache-client", ">=1.8.5"
+gem "rspec-rails", ">=2.5.0"
