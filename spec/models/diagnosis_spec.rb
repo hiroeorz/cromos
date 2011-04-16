@@ -39,3 +39,22 @@ describe Diagnosis do
   end
 
 end
+
+describe Diagnosis, :with => "parameters" do
+
+  before :all do
+    @parameter = Parameter.new(:name => "頭痛",
+                               :description => "頭が痛い",
+                               :code => "return true")
+
+    @diagnosis = Diagnosis.create(:name => "潰瘍性大腸炎",
+                                  :description => "出血を伴う腸管内の潰瘍。",
+                                  :parameters = [@parameter])
+  end
+
+  after :all do
+    @diagnosis.delete if @diagnosis
+  end
+
+
+end
