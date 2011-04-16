@@ -61,10 +61,7 @@ describe Diagnosis, :with => "parameters" do
 
   it "should load function from parameter" do
     @diagnosis.load_functions.should == true
-
-    @diagnosis.instance_eval do
-      @fqueue.length.should == 1
-    end
+    @diagnosis.instance_eval { @fqueue.length.should == 1 }
 
     @diagnosis.fqueue[@parameter.name.to_sym].call.should == true
     @diagnosis.call(@parameter.name).should == true
