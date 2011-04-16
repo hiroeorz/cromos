@@ -4,12 +4,17 @@ require 'spec_helper'
 
 describe Diagnosis do
 
-  before :all do
+  before :each do
     @diagnosis = Diagnosis.create(:name => "潰瘍性大腸炎",
                                   :description => "出血を伴う腸管内の潰瘍。")
+
+    @parameter = Parameter.new(:name => "頭痛",
+                               :description => "頭が痛い",
+                               :code => "return true")
   end
 
-  after :all do
+  after :each do
+    @parameter.delete if @parameter
     @diagnosis.delete if @diagnosis
   end
 
@@ -28,21 +33,18 @@ describe Diagnosis do
   end
 
   it "should have parameters" do
-    parameter = Parameter.new(:name => "頭痛",
-                              :description => "頭が痛い",
-                              :code => "return true")
-    @diagnosis.parameters << parameter
+    @diagnosis.parameters << @parameter
 
     updated_diagnosis = Diagnosis.find(@diagnosis.id)
     updated_diagnosis.parameters.length.should == 1
-    updated_diagnosis.parameters.first.should == parameter
+    updated_diagnosis.parameters.first.should == @parameter
   end
 
 end
 
 describe Diagnosis, :with => "parameters" do
 
-  before :all do
+  before :each do
     @parameter = Parameter.new(:name => "頭痛",
                                :description => "頭が痛い",
                                :code => "return true")
@@ -52,7 +54,8 @@ describe Diagnosis, :with => "parameters" do
                                   :parameters => [@parameter])
   end
 
-  after :all do
+  after :each do
+    @parameter.delete if @parameter
     @diagnosis.delete if @diagnosis
   end
 
@@ -65,6 +68,15 @@ describe Diagnosis, :with => "parameters" do
 
     @diagnosis.fqueue[@parameter.name.to_sym].call.should == true
     @diagnosis.call(@parameter.name).should == true
+  end
+
+  it "should have counter" do
+    @diagnosis.counter = nil
+    @diagnosis.counter.should == 0
+    @diagnosis.counter += 1
+    @diagnosis.counter.should == 1
+    @diagnosis.counter += 2
+    @diagnosis.counter.should == 3
   end
 
 end

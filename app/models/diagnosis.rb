@@ -22,9 +22,14 @@ class Diagnosis < ActiveRecord::Base
            :class_name => "Parameter", :foreign_key => :parameter_id
   
   attr_reader :examine_object
+  attr_accessor :counter
 
   def fqueue
     @fqueue ||= {}
+  end
+
+  def counter
+    @counter ||= 0
   end
 
   def call(name)

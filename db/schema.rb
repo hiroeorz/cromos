@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110412151311) do
   create_table "parameters", :force => true do |t|
     t.string   "name"
     t.text     "description"
+    t.text     "function_name"
     t.text     "code"
     t.text     "type"
     t.datetime "created_at"
@@ -41,6 +42,9 @@ ActiveRecord::Schema.define(:version => 20110412151311) do
     t.integer  "no_id"
     t.integer  "limit_value"
   end
+
+  add_index "parameters", ["function_name"], :name => "index_parameters_on_function_name", :unique => true
+  add_index "parameters", ["name"], :name => "index_parameters_on_name", :unique => true
 
   create_table "setups", :force => true do |t|
     t.string   "name"
