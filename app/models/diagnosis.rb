@@ -13,6 +13,8 @@
 #
 
 class Diagnosis < ActiveRecord::Base
+  SAFE_LEVEL = 4
+
   has_one :yes, :class_name => "Diagnosis", :foreign_key => :yes_id
   has_one :no, :class_name => "Diagnosis", :foreign_key => :no_id
 
@@ -28,18 +30,27 @@ class Diagnosis < ActiveRecord::Base
     @fqueue ||= {}
   end
 
+  def function_count
+    fqueue.count
+  end
+
   def counter
     @counter ||= 0
   end
 
   def call(name)
+    if parameters.size > 0 and fqueue.empty?
+      load_functions
+    end
+
     name = name.to_sym if name.kind_of?(String)
     fqueue[name].call
   end
 
   def load_functions
     parameters.each do |p|
-      fqueue[p.name.to_sym] = lambda{ eval(p.code) }
+      fqueue[p.function_name.to_sym] = 
+        lambda{ $SAFE = SAFE_LEVEL; eval(p.code) }
     end
 
     return !parameters.empty?
