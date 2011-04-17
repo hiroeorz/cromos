@@ -98,4 +98,8 @@ describe Diagnosis, :with => "parameters" do
     @diagnosis.counter.should == 3
   end
 
+  it "should return nil if non exeist function called" do
+    @diagnosis.call(:non_exist_function).should be_nil
+  end
+
 end

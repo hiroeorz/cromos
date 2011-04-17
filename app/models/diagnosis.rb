@@ -44,7 +44,10 @@ class Diagnosis < ActiveRecord::Base
     end
 
     name = name.to_sym if name.kind_of?(String)
-    fqueue[name].call
+    return nil unless fqueue.has_key?(name)
+
+    clean_room = CleanRoom.new
+    clean_room.exec(fqueue[name])
   end
 
   def load_functions
