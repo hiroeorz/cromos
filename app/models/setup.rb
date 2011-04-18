@@ -12,4 +12,8 @@
 #
 
 class Setup < ActiveRecord::Base
+  has_many :diagnoses_setups, :class_name => "DiagnosesSetups",
+           :foreign_key => :setup_id
+  has_many :diagnoses, :through => :diagnoses_setups, 
+           :class_name => "Diagnosis"
 end

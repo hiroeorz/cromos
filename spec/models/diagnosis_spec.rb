@@ -103,3 +103,51 @@ describe Diagnosis, :with => "parameters" do
   end
 
 end
+
+describe Diagnosis, :with => "setups" do
+
+  before :each do
+    @setup1 = Setup.create(:name => "male", :code => "@sex = :male")
+    @setup2 = Setup.create(:name => "child", :code => "@stage = :adult")
+    @setup3 = Setup.create(:name => "age", :code => "@age = 35")
+
+    @parameter1 = Parameter.new(:name => "性別判断",
+                                :description => "性別を判断します",
+                                :function_name => "male?",
+                                :code => "return @sex == :male")
+
+    @parameter2 = Parameter.new(:name => "男で子供なら真",
+                                :description => "男の子供かどうかです。",
+                                :function_name => "male_child?",
+                                :code => "return (@sex == :male and @state == :child)")
+
+    @parameter3 = Parameter.new(:name => "30歳以上なら真",
+                                :description => "30歳以上で真を返します",
+                                :function_name => "over_30_old?",
+                                :code => "return @age >= 30")
+
+
+    @diagnosis = Diagnosis.create(:name => "潰瘍性大腸炎",
+                                  :description => "出血を伴う腸管内の潰瘍。",
+                                  :setups => [@setup1, @setup2, @setup3],
+                                  :parameters => [@parameter1, @parameter2,
+                                                 @parameter3])
+  end
+
+  after :each do
+    @diagnosis.setups.each { |s| s.delete }
+    @diagnosis.parameters.each { |p| p.delete }
+    @diagnosis.delete
+  end
+
+  it "should exec setup" do
+    @diagnosis.load_setups.should be_true
+  end
+
+  it "should setup for parameter exec" do
+    @diagnosis.call(@parameter1.function_name).should be_true
+    @diagnosis.call(@parameter2.function_name).should be_false
+    @diagnosis.call(@parameter3.function_name).should be_true
+  end
+
+end
