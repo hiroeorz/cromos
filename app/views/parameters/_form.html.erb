@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :function_name %><br />
+    <%= f.text_field :function_name %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
@@ -26,6 +30,10 @@
   <div class="field">
     <%= f.label :code %><br />
     <%= f.text_area :code %>
+  </div>
+  <div class="field">
+    <%= f.label :initial_question %><br />
+    <%= f.check_box :initial_question %>
   </div>
   <div class="actions">
     <%= f.submit %>

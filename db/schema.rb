@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418132323) do
+ActiveRecord::Schema.define(:version => 20110514115004) do
 
   create_table "diagnoses", :force => true do |t|
     t.string   "name"
@@ -37,21 +37,8 @@ ActiveRecord::Schema.define(:version => 20110418132323) do
     t.datetime "updated_at"
   end
 
-  create_table "parameters", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.text     "function_name"
-    t.text     "code"
-    t.text     "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "yes_id"
-    t.integer  "no_id"
-    t.integer  "limit_value"
-  end
-
-  add_index "parameters", ["function_name"], :name => "index_parameters_on_function_name", :unique => true
-  add_index "parameters", ["name"], :name => "index_parameters_on_name", :unique => true
+# Could not dump table "parameters" because of following StandardError
+#   Unknown type 'bool' for column 'initial_question'
 
   create_table "setups", :force => true do |t|
     t.string   "name"

@@ -1,9 +1,20 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>FunctionName:</b>
+  <%= @parameter.function_name %>
+</p>
+
+<p>
   <b>Name:</b>
   <%= @parameter.name %>
 </p>
+
+<p>
+  <b>Description:</b>
+  <%= @parameter.description %>
+</p>
+
 
 <p>
   <b>LimitValue:</b>
@@ -13,6 +24,11 @@
 <p>
   <b>Description:</b>
   <%= @parameter.description %>
+</p>
+
+<p>
+  <b>InitialQuestion:</b>
+  <%= @parameter.initial_question ? "Yes" : "No" %>
 </p>
 
 

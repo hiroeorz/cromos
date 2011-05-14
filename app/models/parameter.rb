@@ -23,4 +23,8 @@ class Parameter < ActiveRecord::Base
            :foreign_key => :parameter_id
   has_many :diagnoses, :through => :diagnoses_parameters, 
            :class_name => "Diagnosis"
+
+  def self.all_initials
+    all(:conditions => {:initial_question => true})
+  end
 end

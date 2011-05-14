@@ -2,8 +2,10 @@
 
 <table>
   <tr>
+    <th>FunctionName</th>
     <th>Name</th>
     <th>Description</th>
+    <th>InitialQuestion</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,8 +13,10 @@
 
 <% @parameters.each do |parameter| %>
   <tr>
+    <td><%= parameter.function_name %></td>
     <td><%= parameter.name %></td>
     <td><%= parameter.description %></td>
+    <td><%= parameter.initial_question %></td>
     <td><%= link_to 'Show', parameter %></td>
     <td><%= link_to 'Edit', edit_parameter_path(parameter) %></td>
     <td><%= link_to 'Destroy', parameter, :confirm => 'Are you sure?', :method => :delete %></td>
